@@ -59,6 +59,14 @@ module Veewee
         def add_shared_folder
           command="#{@vboxcmd} sharedfolder add  \"#{name}\" --name \"veewee-validation\" --hostpath \"#{File.expand_path(env.validation_dir)}\" --automount"
           shell_exec("#{command}")
+          unless definition.add_shares.nil?
+            definition.add_shares.each { |share_name, share_path|
+              ui.info "Adding shared folder: Name=#{share_name} path=#{share_path}"
+              command="#{@vboxcmd} sharedfolder add  \"#{name}\" --name \"#{share_name}\" --hostpath \"#{File.expand_path(share_path)}\" --automount"
+              ui.info "#{command}"
+              shell_exec("#{command}")
+            }
+          end
         end
 
         def get_vbox_home
