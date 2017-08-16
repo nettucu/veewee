@@ -7,6 +7,7 @@ module Veewee
 
         def check_requirements
           require 'fog'
+          require 'fog/libvirt'
 
           env.logger.info "Falling back to qemu:///system for libvirt URI if no value is specified in the .fog config file"
           Fog.credentials[:libvirt_uri] ||= "qemu:///system"

@@ -10,6 +10,7 @@ source "https://rubygems.org"
 
 group :kvm do
   gem "ruby-libvirt"
+  gem "fog-libvirt"
 end
 
 group :windows do
